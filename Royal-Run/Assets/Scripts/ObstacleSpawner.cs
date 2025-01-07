@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] GameObject obstaclePrefab;
+    [SerializeField] float obstacleSpawnTime = 1f;
+    //int obstacleSpawned = 0;
+    
     void Start()
     {
-        
+        StartCoroutine(SpawnObstacleRoutine());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator SpawnObstacleRoutine()
     {
-        
+        while(true)
+        {
+            yield return new WaitForSeconds(obstacleSpawnTime);
+        Instantiate(obstaclePrefab,transform.position,Random.rotation);
+      //  obstacleSpawned++;
+        }
     }
 }
