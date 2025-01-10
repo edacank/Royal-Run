@@ -651,9 +651,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 860a7f3e06851f9489f60565b7b0a08c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 7681064490806842833, guid: 5656e19664dffd0439cc801985d5ea35,
-    type: 3}
+  obstaclePrefabs:
+  - {fileID: 7681064490806842833, guid: 5656e19664dffd0439cc801985d5ea35, type: 3}
+  - {fileID: 7162964859085926159, guid: 538cce7faea8e264783ceb396ceb9b9d, type: 3}
+  - {fileID: 4984435233585362957, guid: 5d9efd829b3c8044d872fbbfc58d2290, type: 3}
+  - {fileID: 4249548840524690850, guid: 47a101a163e781a49b2b7ccbef549f03, type: 3}
+  - {fileID: 825984766848893850, guid: ec34bb745efe26b4fa72dc80d66d017f, type: 3}
   obstacleSpawnTime: 1
+  obstacleParent: {fileID: 893502683}
+  spawnWidth: 4
 --- !u!4 &1630075071 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6410221756858730007, guid: dcbc89efbe5bd174b99e07c76bd0b6bf,
