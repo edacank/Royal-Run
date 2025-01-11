@@ -48,9 +48,9 @@ MonoBehaviour:
   fencePrefab: {fileID: 6959514155716548885, guid: 46370c10f4de6ec4a94487fcc43c3292,
     type: 3}
   lanes:
-  - -2.5
+  - -1.5
   - 0
-  - 2.5
+  - 1.5
 --- !u!1 &5475838668189422178
 GameObject:
   m_ObjectHideFlags: 0
