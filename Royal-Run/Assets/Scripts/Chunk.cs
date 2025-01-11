@@ -5,7 +5,7 @@ using UnityEngine;
 public class Chunk : MonoBehaviour
 {
     [SerializeField] GameObject fencePrefab;
-    [SerializeField] float[] lanes ={-1.5f, 0f, 1.5f};
+    [SerializeField] float[] lanes ={-2.4f, 0f, 2.1f};
     
     void Start()
     {
@@ -15,9 +15,9 @@ public class Chunk : MonoBehaviour
     void SpawnFence()
     {
         List<int> availableLanes = new List<int> {0,1,2};
-        int fencesToSpawn = Random.Range(0,lanes.Length );
-        for(int i =0 ; i<fencesToSpawn; i++){
-            if(availableLanes.Count <=0) break;
+        int fencesToSpawn = Random.Range(0, lanes.Length );
+        for(int i =0 ; i < fencesToSpawn; i++){
+            if(availableLanes.Count <= 0) break;
             //lanes.Length --> availableLanes.Count
             int randomLaneIndex =  Random.Range(0, availableLanes.Count);
             int selectedLane = availableLanes[randomLaneIndex];
