@@ -5,27 +5,60 @@ using UnityEngine;
 public class Chunk : MonoBehaviour
 {
     [SerializeField] GameObject fencePrefab;
-    [SerializeField] float[] lanes ={-2.4f, 0f, 2.1f};
     
+    [SerializeField] GameObject applePrefab;
+    [SerializeField] GameObject coinPrefab;
+    [SerializeField]  float appleSpawnChance = .3f;
+    [SerializeField]  float coinSpawnChance = .5f;
+    [SerializeField] float[] lanes ={-2.4f, 0f, 2.1f};
+    List<int> availableLanes = new List<int> {0,1,2};
     void Start()
     {
-        SpawnFence();
+        SpawnFences();
+        SpawnApple();
+        SpawnCoins();
     }
 
-    void SpawnFence()
+    void SpawnFences()
     {
-        List<int> availableLanes = new List<int> {0,1,2};
+        
         int fencesToSpawn = Random.Range(0, lanes.Length );
-        for(int i =0 ; i < fencesToSpawn; i++){
-            if(availableLanes.Count <= 0) break;
+        for(int i =0 ; i < fencesToSpawn; i++)
+        {
+            if (availableLanes.Count <= 0) break;
             //lanes.Length --> availableLanes.Count
-            int randomLaneIndex =  Random.Range(0, availableLanes.Count);
-            int selectedLane = availableLanes[randomLaneIndex];
-            availableLanes.RemoveAt(randomLaneIndex);
+            int selectedLane = SelectLane();
             //randomLaneIndex -->selectedLane
             Vector3 spawnPosition = new Vector3(lanes[selectedLane], transform.position.y, transform.position.z);
-            Instantiate(fencePrefab,spawnPosition,Quaternion.identity, this.transform);
+            Instantiate(fencePrefab, spawnPosition, Quaternion.identity, this.transform);
         }
-        
+
     }
+    void SpawnApple()
+        {
+            if(Random.value > appleSpawnChance || availableLanes.Count <= 0)  return;
+            if(availableLanes.Count <= 0) return;
+            int selectedLane = SelectLane();
+            //randomLaneIndex -->selectedLane
+            Vector3 spawnPosition = new Vector3(lanes[selectedLane], transform.position.y, transform.position.z);
+            Instantiate(applePrefab, spawnPosition, Quaternion.identity, this.transform);
+        }
+         void SpawnCoins()
+        {
+            if(Random.value > coinSpawnChance || availableLanes.Count <= 0)  return;
+            if(availableLanes.Count <= 0) return;
+            int selectedLane = SelectLane();
+           
+            Vector3 spawnPosition = new Vector3(lanes[selectedLane], transform.position.y, transform.position.z);
+            Instantiate(coinPrefab, spawnPosition, Quaternion.identity, this.transform);
+        }
+     int SelectLane()
+    {
+        int randomLaneIndex = Random.Range(0, availableLanes.Count);
+        int selectedLane = availableLanes[randomLaneIndex];
+        availableLanes.RemoveAt(randomLaneIndex);
+        return selectedLane;
+    }
+
+    
 }
