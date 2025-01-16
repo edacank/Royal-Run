@@ -10,6 +10,7 @@ public class Chunk : MonoBehaviour
     [SerializeField] GameObject coinPrefab;
     [SerializeField]  float appleSpawnChance = .3f;
     [SerializeField]  float coinSpawnChance = .5f;
+    [SerializeField] float coinSeperationLength = 2f;
     [SerializeField] float[] lanes ={-2.4f, 0f, 2.1f};
     List<int> availableLanes = new List<int> {0,1,2};
     void Start()
@@ -46,11 +47,20 @@ public class Chunk : MonoBehaviour
          void SpawnCoins()
         {
             if(Random.value > coinSpawnChance || availableLanes.Count <= 0)  return;
-            if(availableLanes.Count <= 0) return;
-            int selectedLane = SelectLane();
            
-            Vector3 spawnPosition = new Vector3(lanes[selectedLane], transform.position.y, transform.position.z);
-            Instantiate(coinPrefab, spawnPosition, Quaternion.identity, this.transform);
+            int selectedLane = SelectLane();
+            int maxCoinsToSpawnn = 6;
+            int coinsToSpawn = Random.Range(1,maxCoinsToSpawnn);
+
+            float topOfChunkZPos =transform.position.z +(coinSeperationLength*2f);
+
+            for(int i =0;i < coinsToSpawn; i++)
+            {
+                float spawnPositionZ = topOfChunkZPos -(i * coinSeperationLength);
+                Vector3 spawnPosition = new Vector3(lanes[selectedLane], transform.position.y, spawnPositionZ);
+                Instantiate(coinPrefab, spawnPosition, Quaternion.identity, this.transform);
+            }
+            
         }
      int SelectLane()
     {
