@@ -53,10 +53,11 @@ MonoBehaviour:
     type: 3}
   appleSpawnChance: 0.3
   coinSpawnChance: 0.5
+  coinSeperationLength: 2
   lanes:
-  - -2.4
+  - -3
   - 0
-  - 2.1
+  - 3
 --- !u!1 &5475838668189422178
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,7 +87,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.65, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_LocalScale: {x: 12, y: 1, z: 12}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1304688772171103296}
@@ -224,7 +225,7 @@ PrefabInstance:
     - target: {fileID: 6317427368463412491, guid: 5f28e8a76fb078c4ab5d1543c3a3e4ae,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.13
+      value: 6.49
       objectReference: {fileID: 0}
     - target: {fileID: 6317427368463412491, guid: 5f28e8a76fb078c4ab5d1543c3a3e4ae,
         type: 3}
@@ -387,7 +388,7 @@ PrefabInstance:
     - target: {fileID: 6317427368463412491, guid: 5f28e8a76fb078c4ab5d1543c3a3e4ae,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.13
+      value: -6.32
       objectReference: {fileID: 0}
     - target: {fileID: 6317427368463412491, guid: 5f28e8a76fb078c4ab5d1543c3a3e4ae,
         type: 3}
