@@ -13,6 +13,7 @@ public class Apple : Pickup
     }
     protected override void OnPickup()
     {
+        levelGenerator.ChangeChunkMoveSpeed(adjustChangeMoveSpeedAmount);
         Debug.Log("Power Up!!");
     }
 }
