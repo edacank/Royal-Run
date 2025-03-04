@@ -5,18 +5,19 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     //references
-    [Header("references")]
+    [Header("References")]
     [SerializeField] CameraController cameraController;
     [SerializeField] GameObject chunkPrefab;
-    [SerializeField] int startingChunksAmount = 12;
     [SerializeField] Transform chunkParent;
-    [Header("level settings")]
+    [Header("Level Settings")] [Tooltip("the amount of the chunks we started with ")]
+     [SerializeField] int startingChunksAmount = 12;
+     [Tooltip("Do not change chunk length value unless chunk prefab size reflects change")]
     [SerializeField] float chunkLength = 10f;
     [SerializeField] float moveSpeed = 8f;
     [SerializeField] float minMoveSpeed = 2f;
     
     [SerializeField] float maxMoveSpeed = 20f;
-     [SerializeField] float minGravity = -22f;
+     [SerializeField] float minGravityZ = -22f;
     [SerializeField] float maxGravityZ = -2f;
    // GameObject[] chunks = new GameObject[12];
    List<GameObject> chunks = new List<GameObject>();
@@ -32,14 +33,19 @@ public class LevelGenerator : MonoBehaviour
     }
     public void ChangeChunkMoveSpeed(float speedAmount)
     {
-        moveSpeed += speedAmount;
-        if(moveSpeed < minMoveSpeed)
+        float newMoveSpeed = moveSpeed + speedAmount;
+        newMoveSpeed = Mathf.Clamp(newMoveSpeed, minMoveSpeed, maxMoveSpeed);
+       // moveSpeed += speedAmount;
+        if(newMoveSpeed != moveSpeed)
         {
-            moveSpeed = minMoveSpeed;
+            moveSpeed = newMoveSpeed;
+            float newGravityZ = Physics.gravity.z- speedAmount;
+            newGravityZ =Mathf.Clamp(newGravityZ, minGravityZ, maxGravityZ);
+            Physics.gravity = new Vector3(Physics.gravity.x,Physics.gravity.y,newGravityZ);
+            cameraController.ChangeCameraFOV(speedAmount);
         }
 
-        Physics.gravity = new Vector3(Physics.gravity.x,Physics.gravity.y,Physics.gravity.z -speedAmount);
-        cameraController.ChangeCameraFOV(speedAmount);
+        
     }
    
    void SpawnStartingChunks(){
