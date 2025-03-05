@@ -13,6 +13,7 @@ public class Chunk : MonoBehaviour
     [SerializeField] float coinSeperationLength = 2f;
     [SerializeField] float[] lanes ={-2.4f, 0f, 2.1f};
     List<int> availableLanes = new List<int> {0,1,2};
+    LevelGenerator levelGenerator;
     void Start()
     {
         SpawnFences();
@@ -20,6 +21,10 @@ public class Chunk : MonoBehaviour
         SpawnCoins();
     }
 
+    public void Init(LevelGenerator levelGenerator)
+    {
+        this.levelGenerator = levelGenerator;
+    }
     void SpawnFences()
     {
         
@@ -42,7 +47,9 @@ public class Chunk : MonoBehaviour
             int selectedLane = SelectLane();
             //randomLaneIndex -->selectedLane
             Vector3 spawnPosition = new Vector3(lanes[selectedLane], transform.position.y, transform.position.z);
-            Instantiate(applePrefab, spawnPosition, Quaternion.identity, this.transform);
+            Apple newApple= Instantiate(applePrefab, spawnPosition, Quaternion.identity, this.transform).GetComponent<Apple>();
+            newApple.Init(levelGenerator);
+
         }
          void SpawnCoins()
         {
