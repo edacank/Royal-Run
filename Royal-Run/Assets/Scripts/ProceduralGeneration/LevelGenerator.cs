@@ -9,6 +9,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] CameraController cameraController;
     [SerializeField] GameObject chunkPrefab;
     [SerializeField] Transform chunkParent;
+    [SerializeField] ScoreManager scoreManager;
     [Header("Level Settings")] [Tooltip("the amount of the chunks we started with ")]
      [SerializeField] int startingChunksAmount = 12;
      [Tooltip("Do not change chunk length value unless chunk prefab size reflects change")]
@@ -63,7 +64,7 @@ public class LevelGenerator : MonoBehaviour
             //chunks[i] = newChunk;
             chunks.Add(newChunkGO);
             Chunk newChunk = newChunkGO.GetComponent<Chunk>();
-            newChunk.Init(this);
+            newChunk.Init(this,scoreManager);
         
     }
 
